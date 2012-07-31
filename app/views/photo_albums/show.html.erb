@@ -1,15 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Title:</b>
-  <%= @photo_album.title %>
+  <b>Title:</b> <%= @photo_album.title %>
+  <b>By User:</b>
+  <%= @photo_album.user.name %>
 </p>
-
-<p>
-  <b>User:</b>
-  <%= @photo_album.user_id %>
-</p>
-
+<% @photo_album.photos.each do |photo| %>
+  <tr>
+    <td><img src="/uploads/<%= photo.id %>.jpg" width=25></td>
+    <td><%= link_to photo.title, photo %></td>
+    <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
+    <td><%= link_to 'Destroy', photo, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
 
 <%= link_to 'Edit', edit_photo_album_path(@photo_album) %> |
 <%= link_to 'Back', photo_albums_path %>
