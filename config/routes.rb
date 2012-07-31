@@ -1,5 +1,7 @@
 AlbumTest::Application.routes.draw do
+  resources :photo_albums
+
   resources :users
 
-  root :to => 'users#index'
+  root :to => 'photo_albums#index'
 end
